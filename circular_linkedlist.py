@@ -44,19 +44,60 @@ class CircularLL:
     def insertAtIndex(self, index, data):
         new_node = Node(data)
         if (not self.head or index == 0):
-            new_node.next = new_node
-            self.head = new_node
-            return
+            self.insertAtStart(data)
 
         else:
+
             pos = 0
             temp = self.head.next
+            if index > pos:
+                print("Position out of range")
+                return
             while temp and pos < index - 1:
                 pos = pos + 1
                 temp = temp.next
 
             new_node.next = temp.next
             temp.next = new_node
+
+    def removeAtStart(self):
+        if (not self.head):
+            print("Circular linked list is empty")
+            return
+
+        elif self.head.next == self.head:
+            self.head = None
+            return
+        else:
+            curr = self.head
+            while curr.next != self.head:
+                curr = curr.next
+            curr.next = self.head.next
+            self.head = self.head.next
+
+    def removeAtIndex(self, index):
+        if (not self.head):
+            print("List is already empty!")
+            return
+
+        if index < 0:
+            print("Invalid position")
+            return
+
+        elif index == 0:
+            self.removeAtStart()
+
+        else:
+            temp = self.head
+            pos = 0
+            while (temp.next != self.head and pos != index):
+                prev = temp
+                temp = temp.next
+                pos = pos + 1
+            if index > pos:
+                print("index out of range")
+            prev.next = temp.next
+            temp.next = None
 
     def printCircularLL(self):
         if not self.head:
@@ -72,6 +113,7 @@ class CircularLL:
 
 
 circularll = CircularLL()
+
 circularll.append(1)
 circularll.append(2)
 circularll.append(3)
@@ -79,6 +121,6 @@ circularll.append(4)
 circularll.append(5)
 circularll.append(6)
 
-circularll.insertAtIndex(2, 7)
+circularll.removeAtIndex(2)
 
 circularll.printCircularLL()
