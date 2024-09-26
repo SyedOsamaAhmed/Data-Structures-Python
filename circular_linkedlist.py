@@ -41,6 +41,23 @@ class CircularLL:
             temp.next = new_node
             self.head = new_node
 
+    def insertAtIndex(self, index, data):
+        new_node = Node(data)
+        if (not self.head or index == 0):
+            new_node.next = new_node
+            self.head = new_node
+            return
+
+        else:
+            pos = 0
+            temp = self.head.next
+            while temp and pos < index - 1:
+                pos = pos + 1
+                temp = temp.next
+
+            new_node.next = temp.next
+            temp.next = new_node
+
     def printCircularLL(self):
         if not self.head:
             print("circular linked list empty!")
@@ -62,8 +79,6 @@ circularll.append(4)
 circularll.append(5)
 circularll.append(6)
 
-circularll.insertAtStart(20)
-circularll.insertAtStart(30)
-circularll.insertAtStart(50)
+circularll.insertAtIndex(2, 7)
 
 circularll.printCircularLL()

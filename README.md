@@ -1,1 +1,5 @@
-# Data-Structures-Python
+### Topics covered:
+
+- Arrays
+- binary search
+- Linked Lists
