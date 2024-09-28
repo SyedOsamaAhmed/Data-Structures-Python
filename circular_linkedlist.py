@@ -43,16 +43,18 @@ class CircularLL:
 
     def insertAtIndex(self, index, data):
         new_node = Node(data)
-        if (not self.head or index == 0):
+        if (not self.head or index == 1):
             self.insertAtStart(data)
+
+        elif index > self.length():
+            print("position is greater than list length")
+            return
 
         else:
 
             pos = 0
             temp = self.head.next
-            if index > pos:
-                print("Position out of range")
-                return
+
             while temp and pos < index - 1:
                 pos = pos + 1
                 temp = temp.next
@@ -99,6 +101,21 @@ class CircularLL:
             prev.next = temp.next
             temp.next = None
 
+    def length(self):
+        if (not self.head):
+            return 0
+        else:
+            curr = self.head
+            count = 1
+            while True:
+                curr = curr.next
+                if curr == self.head:
+                    break
+
+                count = count + 1
+
+            return count
+
     def printCircularLL(self):
         if not self.head:
             print("circular linked list empty!")
@@ -121,6 +138,5 @@ circularll.append(4)
 circularll.append(5)
 circularll.append(6)
 
-circularll.removeAtIndex(2)
-
+circularll.insertAtIndex(4, 15)
 circularll.printCircularLL()

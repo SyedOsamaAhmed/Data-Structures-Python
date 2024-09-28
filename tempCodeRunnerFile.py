@@ -1,1 +1,1 @@
-circularll.removeAtIndex(0)
+  curr = curr.next
