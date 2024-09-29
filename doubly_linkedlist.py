@@ -54,6 +54,73 @@ class DoublyLL:
         temp.next = new_node
         new_node.prev = temp
 
+    def removeAtBegin(self):
+        if not self.head:
+            print("List is empty!")
+            return
+
+        else:
+
+            if self.head.next is not None:
+                self.head = self.head.next
+                self.head.prev = None
+
+    def removeAtEnd(self):
+        if not self.head:
+            print("List is empty!")
+
+        curr_node = self.head
+        previous = curr_node.prev
+
+        while curr_node.next:
+            previous = curr_node
+            curr_node = curr_node.next
+
+        previous.next = None
+        curr_node.prev = None
+        curr_node = None
+
+    def calculateLength(self):
+        if not self.head:
+            return 0
+
+        else:
+            curr = self.head
+            count = 1
+            while curr.next:
+                curr = curr.next
+                count += 1
+            return count
+
+    def deleteAtIndex(self, index):
+        if self.head is None:
+            print("List is empty!")
+            return
+
+        elif (index == 1):
+            self.removeAtBegin()
+
+        elif index > self.calculateLength():
+            print("index invalid!")
+            return
+        else:
+            pos = 1
+            curr = self.head
+            previous_node = None
+            next_node = None
+            while curr and pos != index:
+                pos = pos + 1
+                previous_node = curr
+                curr = curr.next
+                next_node = curr.next
+
+            previous_node.next = next_node
+            if next_node:
+                next_node.prev = previous_node
+            curr.next = None
+            curr.prev = None
+            curr = None
+
     def print(self):
         curr = self.head
         while curr:
@@ -65,7 +132,8 @@ doublyll = DoublyLL()
 doublyll.append(1)
 doublyll.append(2)
 doublyll.append(3)
-doublyll.insertAtPos(12, 2)
-doublyll.insertAtPos(14, 1)
-doublyll.insertAtPos(15, 6)
+doublyll.append(4)
+doublyll.append(5)
+doublyll.deleteAtIndex(2)
+
 doublyll.print()
