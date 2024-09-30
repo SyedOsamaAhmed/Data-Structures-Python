@@ -5,3 +5,4 @@
 - Linked Lists
 - doubly linked list
 - circular linked list
+- stack
