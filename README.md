@@ -6,3 +6,6 @@
 - doubly linked list
 - circular linked list
 - stack
+- circular queue
+- queue using arrays
+- binary trees (traversals)
